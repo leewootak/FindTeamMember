@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public float MasterVol => masterVol;
     public float BgmVol => bgmVol;
     public float SFXVol => sfxVol;
+    public List<AudioSource> SFXList => sfxList;
 
     private void Awake()
     {

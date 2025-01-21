@@ -25,12 +25,14 @@ public class PlayUI : MonoBehaviour
             normalSuccessPanel.SetActive(true);
             timeTxt.enabled = false;
             board.SetActive(false);
+            AudioManager.Instance.SFXList.Clear();
         }
         else if (time >= 30f)
         {
             timeTxt.text = 30f.ToString("N2");
             Time.timeScale = 0f;
             failTxt.SetActive(true);
+            AudioManager.Instance.SFXList.Clear();
         }
     }
 }
