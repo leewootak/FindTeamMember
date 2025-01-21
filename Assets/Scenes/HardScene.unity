@@ -1428,6 +1428,7 @@ MonoBehaviour:
   normalSuccessPanel: {fileID: 0}
   clip: {fileID: 8300000, guid: 34efe04ad61d9464eaf69c5dd1833807, type: 3}
   cardCount: 0
+  curLevel: 2
 --- !u!4 &605546556
 Transform:
   m_ObjectHideFlags: 0

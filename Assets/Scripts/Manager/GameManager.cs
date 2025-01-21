@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public AudioClip clip;
 
     public int cardCount = 0;
+    public int curLevel = 1;    // 1:Normal, 2:Hard
     float time = 0f;
 
     private void Awake()
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         audioSource = GetComponent<AudioSource>();
+        AudioManager.Instance.AddSFXInfo(audioSource);
     }
 
     private void Update()
