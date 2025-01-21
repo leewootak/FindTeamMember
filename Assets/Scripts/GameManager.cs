@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //깃허브 확인중 입니다.
     public static GameManager Instance;
 
     public Card firstCard;
