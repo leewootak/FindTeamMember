@@ -36,7 +36,7 @@ public class Board : MonoBehaviour
         {
             
             GameObject go = Instantiate(card, gameObject.transform);
-            Debug.Log(gameObject.transform.localScale); 
+            //Debug.Log(gameObject.transform.localScale); 
             float x = (i % 5) * 1.15f - 2.3f;
             float y = (i / 5) * 1.15f - 3.8f;
 
