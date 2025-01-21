@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public Text timeTxt;
-    public GameObject failTxt, clearTxt, normalSuccessPanel, board;
+    public GameObject failTxt, clearTxt, normalSuccessPanel, hardSuccessPanel, board;
 
     AudioSource audioSource;
     public AudioClip clip;
@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if (cardCount == 0)
             {
-                GameEnd();
                 clearTxt.SetActive(true);
                 normalSuccessPanel.SetActive(true);
                 timeTxt.enabled = false;
@@ -73,10 +72,5 @@ public class GameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
-    }
-
-    public void GameEnd()
-    {
-        Time.timeScale = 0f;
     }
 }
