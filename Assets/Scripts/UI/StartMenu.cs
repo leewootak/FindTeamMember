@@ -16,7 +16,6 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        //SceneManager.LoadScene("MenuScene");
         UIManager.Instance.OpenUI(levelSelectMenu);
     }
 

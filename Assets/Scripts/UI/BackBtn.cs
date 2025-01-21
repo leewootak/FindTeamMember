@@ -8,5 +8,6 @@ public class BackBtn : MonoBehaviour
     public void Back()
     {
         SceneManager.LoadScene("StartScene");
+        UIManager.Instance.UIStack.Clear();
     }
 }

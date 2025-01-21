@@ -5,16 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class LevelSeclect : MonoBehaviour
 {
-    public void normal()
+    public void NormalButton()
     {
         GameManager.Instance.CurLevel = 1;
         SceneManager.LoadScene("MainScene");
     }
 
-    public void hard()
+    public void HardButton()
     {
         GameManager.Instance.CurLevel = 2;
         SceneManager.LoadScene("MainScene");
     }
 
+    public void ReturnButton()
+    {
+        UIManager.Instance.CloseUI();
+    }
 }

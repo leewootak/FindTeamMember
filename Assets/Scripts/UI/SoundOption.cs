@@ -51,4 +51,9 @@ public class SoundOption : MonoBehaviour
         AudioManager.Instance.ChangeSFXVolume(sfxVol.slider.value);
         sfxVol.figure.text = (sfxVol.slider.value * 100f).ToString("N0");
     }
+
+    public void EscapeButton()
+    {
+        UIManager.Instance.CloseUI();
+    }
 }

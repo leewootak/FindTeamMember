@@ -8,7 +8,26 @@ public class UIManager : MonoBehaviour
 
     private Stack<GameObject> uiStack;
 
-    public static UIManager Instance => instance;
+    public static UIManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<UIManager>();
+
+                if (instance == null)
+                {
+                    GameObject obj = new GameObject("UIManager");
+                    instance = obj.AddComponent<UIManager>();
+                    DontDestroyOnLoad(obj);
+                }
+            }
+            return instance;
+        }
+    }
+
+    public Stack<GameObject> UIStack => uiStack;
 
     private void Awake()
     {
@@ -17,7 +36,7 @@ public class UIManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (instance != this)
         {
             Destroy(gameObject);
         }

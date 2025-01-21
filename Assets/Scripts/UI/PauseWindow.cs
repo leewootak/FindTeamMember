@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PauseWindow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject optionMenu;
+
+    public void OptionButton()
     {
-        
+        UIManager.Instance.OpenUI(optionMenu);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ReturnButton()
     {
-        
+        UIManager.Instance.CloseUI();
     }
 }

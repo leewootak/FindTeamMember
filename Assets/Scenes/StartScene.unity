@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1038163476}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: CloseUI
+      - m_Target: {fileID: 8227668321545883749}
+        m_TargetAssemblyTypeName: LevelSeclect, Assembly-CSharp
+        m_MethodName: ReturnButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1868,9 +1868,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6220549379523580485}
+      - m_Target: {fileID: 8227668321545883749}
         m_TargetAssemblyTypeName: LevelSeclect, Assembly-CSharp
-        m_MethodName: normal
+        m_MethodName: NormalButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1893,7 +1893,6 @@ GameObject:
   - component: {fileID: 4201101385570901350}
   - component: {fileID: 8398974266678268504}
   - component: {fileID: 2725705637469023895}
-  - component: {fileID: 584527678687455337}
   m_Layer: 5
   m_Name: HardBtn
   m_TagString: Untagged
@@ -1909,18 +1908,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8062941738693686148}
   m_CullTransparentMesh: 1
---- !u!114 &584527678687455337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483383405710688147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ab3336382000db4699f15b793e57e3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1175364246974117374
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,6 +1917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8227668321545883748}
+  - component: {fileID: 8227668321545883749}
   m_Layer: 5
   m_Name: LevelSelectMenu
   m_TagString: Untagged
@@ -1980,7 +1968,6 @@ GameObject:
   - component: {fileID: 302437669276902427}
   - component: {fileID: 378618359316090377}
   - component: {fileID: 2711214714864554251}
-  - component: {fileID: 6220549379523580485}
   m_Layer: 5
   m_Name: NormalBtn
   m_TagString: Untagged
@@ -2198,18 +2185,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Hard
---- !u!114 &6220549379523580485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3210707677026403270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ab3336382000db4699f15b793e57e3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &6415479712247948208
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2295,6 +2270,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8227668321545883749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175364246974117374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab3336382000db4699f15b793e57e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8287923409012286340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2303,17 +2290,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1566013730}
     m_Modifications:
-    - target: {fileID: 826948798424703879, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1038163476}
     - target: {fileID: 1412418249768303455, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1412418249768303455, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2379400863958122406, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_Name
@@ -2325,55 +2308,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3078193945392723225, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3078193945392723225, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3078193945392723225, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4394467403535791489, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4394467403535791489, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4394467403535791489, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6081609678358302667, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6081609678358302667, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6081609678358302667, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6320814658859321213, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6320814658859321213, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8167424100085996174, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8167424100085996174, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9068890046242339086, guid: 42aa40e252ef89d4e809903d0987fab1, type: 3}
       propertyPath: m_Pivot.x
@@ -2504,9 +2487,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584527678687455337}
+      - m_Target: {fileID: 8227668321545883749}
         m_TargetAssemblyTypeName: LevelSeclect, Assembly-CSharp
-        m_MethodName: hard
+        m_MethodName: HardButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
