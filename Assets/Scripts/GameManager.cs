@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //깃허브 확인중 입니다.
     public static GameManager Instance;
 
     public Card firstCard;
@@ -13,12 +12,16 @@ public class GameManager : MonoBehaviour
 
     public Text timeTxt;
     public GameObject endTxt;
+    public GameObject pauseButton;
 
     AudioSource audioSource;
     public AudioClip clip;
 
     public int cardCount = 0;
     float time = 0f;
+
+    // 일시정지 버튼
+    public bool isPaused = false;
 
     private void Awake()
     {
@@ -36,15 +39,20 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        time += Time.deltaTime;
-        timeTxt.text = time.ToString("N2");
-
-        if (time >= 30f)
+        // 일시정지 버튼
+        if (!endTxt.activeSelf && !isPaused)
         {
-            timeTxt.text = 30f.ToString("N2");
-            Time.timeScale = 0f;
-            endTxt.SetActive(true);
+            time += Time.deltaTime;
+            timeTxt.text = time.ToString("N2");
+
+            if (time >= 30f)
+            {
+                timeTxt.text = 30f.ToString("N2");
+                Time.timeScale = 0f;
+                endTxt.SetActive(true);
+            }
         }
+
     }
 
     public void Matched()
@@ -69,5 +77,24 @@ public class GameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
+    }
+
+    //일시정지 버튼
+    public void TogglePause()
+    {
+        if (!isPaused)
+        {
+            Time.timeScale = 0f;
+            isPaused = true;
+
+            pauseButton.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            isPaused = false;
+
+            pauseButton.SetActive(false);
+        }
     }
 }
