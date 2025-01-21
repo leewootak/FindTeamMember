@@ -7,14 +7,14 @@ public class LevelSeclect : MonoBehaviour
 {
     public void normal()
     {
-        Debug.Log("노말 스테이지 진입");
-        SceneManager.LoadScene("NormalScene");
+        GameManager.Instance.CurLevel = 1;
+        SceneManager.LoadScene("MainScene");
     }
 
     public void hard()
     {
-        Debug.Log("하드 스테이지 진입");
-        SceneManager.LoadScene("HardScene");
+        GameManager.Instance.CurLevel = 2;
+        SceneManager.LoadScene("MainScene");
     }
 
 }

@@ -7,18 +7,23 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public Card firstCard;
-    public Card secondCard;
-
-    public Text timeTxt;
-    public GameObject failTxt, clearTxt, normalSuccessPanel, hardSuccessPanel, board;
+    private int curLevel = 1;    // 1:Normal, 2:Hard
 
     AudioSource audioSource;
     public AudioClip clip;
 
+    public Card firstCard;
+    public Card secondCard;
+
     public int cardCount = 0;
-    public int curLevel = 1;    // 1:Normal, 2:Hard
-    float time = 0f;
+    private bool isFinished;
+
+    public int CurLevel
+    {
+        get => curLevel; set => curLevel = value;
+    }
+
+    public bool IsFinished => isFinished;
 
     private void Awake()
     {
@@ -36,21 +41,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
+        isFinished = false;
+
         audioSource = GetComponent<AudioSource>();
         AudioManager.Instance.AddSFXInfo(audioSource);
-    }
-
-    private void Update()
-    {
-        time += Time.deltaTime;
-        timeTxt.text = time.ToString("N2");
-
-        if (time >= 30f)
-        {
-            timeTxt.text = 30f.ToString("N2");
-            Time.timeScale = 0f;
-            failTxt.SetActive(true);
-        }
     }
 
     public void Matched()
@@ -63,10 +57,7 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if (cardCount == 0)
             {
-                clearTxt.SetActive(true);
-                normalSuccessPanel.SetActive(true);
-                timeTxt.enabled = false;
-                board.SetActive(false);
+                isFinished = true;
             }
         }
         else
