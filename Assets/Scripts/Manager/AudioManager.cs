@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour
         }
 
         masterVol = 0.8f;
-        bgmVol = 0.8f;
+        bgmVol = 0.1f; // test¿ë 0.1f ¿ø·¡ 0.8f
         sfxVol = 0.8f;
 
         bgm = GetComponent<AudioSource>();

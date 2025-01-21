@@ -27,11 +27,12 @@ public class PlayUI : MonoBehaviour
             board.SetActive(false);
             AudioManager.Instance.SFXList.Clear();
         }
-        else if (time >= 30f)
+        else if (time >= 10f)// test용 10초 원래 30초
         {
             timeTxt.text = 30f.ToString("N2");
             Time.timeScale = 0f;
             failTxt.SetActive(true);
+            board.SetActive(false);
             AudioManager.Instance.SFXList.Clear();
         }
     }
