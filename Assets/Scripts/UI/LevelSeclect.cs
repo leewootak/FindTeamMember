@@ -7,12 +7,12 @@ public class LevelSeclect : MonoBehaviour
 {
     public void normal()
     {
-        SceneManager.LoadScene("NormalScene");
+        Debug.Log("노말 스테이지 진입");
     }
 
     public void hard()
     {
-        SceneManager.LoadScene("HardScene");
+        Debug.Log("하드 스테이지 진입");
     }
 
 }
