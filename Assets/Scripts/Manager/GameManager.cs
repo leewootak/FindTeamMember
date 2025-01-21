@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         audioSource = GetComponent<AudioSource>();
+        AudioManager.Instance.AddSFXInfo(audioSource);
     }
 
     private void Update()
