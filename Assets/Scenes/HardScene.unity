@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 7124304879051025721, guid: 900b990118fd2764eae70e9ae44a8e25, type: 3}
-  curLevel: 1
 --- !u!1 &162029442
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +438,7 @@ MonoBehaviour:
   endTxt: {fileID: 1726586731}
   clip: {fileID: 8300000, guid: 34efe04ad61d9464eaf69c5dd1833807, type: 3}
   cardCount: 0
+  curLevel: 2
 --- !u!4 &605546556
 Transform:
   m_ObjectHideFlags: 0
