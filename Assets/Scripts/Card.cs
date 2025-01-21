@@ -19,6 +19,7 @@ public class Card : MonoBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        AudioManager.Instance.AddSFXInfo(audioSource);
     }
 
     public void Setting(int number)
