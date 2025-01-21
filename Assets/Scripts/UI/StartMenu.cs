@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
+    [SerializeField] private GameObject levelSelectMenu;
     [SerializeField] private GameObject optionMenu;
 
     private void Start()
@@ -15,7 +16,8 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("MenuScene");
+        //SceneManager.LoadScene("MenuScene");
+        UIManager.Instance.OpenUI(levelSelectMenu);
     }
 
     public void DisplayOption()
