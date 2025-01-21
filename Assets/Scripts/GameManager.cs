@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public Text timeTxt;
-    public GameObject endTxt;
+    public GameObject failTxt, clearTxt, normalSuccessPanel, board;
 
     AudioSource audioSource;
     public AudioClip clip;
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         {
             timeTxt.text = 30f.ToString("N2");
             Time.timeScale = 0f;
-            endTxt.SetActive(true);
+            failTxt.SetActive(true);
         }
     }
 
@@ -56,8 +56,11 @@ public class GameManager : MonoBehaviour
             cardCount -= 2;
             if (cardCount == 0)
             {
-                Time.timeScale = 0f;
-                endTxt.SetActive(true);
+                GameEnd();
+                clearTxt.SetActive(true);
+                normalSuccessPanel.SetActive(true);
+                timeTxt.enabled = false;
+                board.SetActive(false);
             }
         }
         else
@@ -68,5 +71,10 @@ public class GameManager : MonoBehaviour
 
         firstCard = null;
         secondCard = null;
+    }
+
+    public void GameEnd()
+    {
+        Time.timeScale = 0f;
     }
 }

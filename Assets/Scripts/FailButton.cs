@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RetryButton : MonoBehaviour
+public class FailButton : MonoBehaviour
 {
-    public void Retry()
+    public void Back()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("StartScene");
     }
 }
