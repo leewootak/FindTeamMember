@@ -6,18 +6,40 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     public GameObject card;
+    public int curLevel = 1;    // 1:Normal, 2:Hard
+
+    int totalCard = 20;
 
     private void Start()
     {
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
-        arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
-
-        for (int i = 0; i < 16; i++)
+        // 난이도에 따라 세팅 변경
+        switch(curLevel)
         {
+            case 1:
+                totalCard = 20;
+                break;
+            case 2:
+                totalCard = 30;
+                break;
+            default:
+                totalCard = 20;
+                break;
+        }
+
+        int[] arr = new int[totalCard];
+        for(int i = 0; i <  totalCard; i++)
+        {
+            arr[i] = i / 2;
+        }
+        arr = arr.OrderBy(x => Random.Range(0f, totalCard / 2)).ToArray(); // 이미지 번호 섞기 
+
+        for (int i = 0; i < totalCard; i++)
+        {
+            Debug.Log(arr[i]);
             GameObject go = Instantiate(card, gameObject.transform);
 
-            float x = (i % 4) * 1.4f - 2.1f;
-            float y = (i / 4) * 1.4f - 3f;
+            float x = (i % 5) * 1.1f - 2.17f;
+            float y = (i / 5) * 1.1f - 3.3f;
 
             go.transform.position = new Vector2(x, y);
             go.GetComponent<Card>().Setting(arr[i]);
