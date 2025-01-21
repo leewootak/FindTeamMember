@@ -2531,7 +2531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1244149632
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3909,8 +3909,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1854517019}
-        m_TargetAssemblyTypeName: FailButton, Assembly-CSharp
-        m_MethodName: Retry
+        m_TargetAssemblyTypeName: BackBtn, Assembly-CSharp
+        m_MethodName: Back
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3971,7 +3971,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1854517013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23c57e248b1ad14998fc952ba222bc4, type: 3}
+  m_Script: {fileID: 11500000, guid: cb0510d1e1d54e44ead60d73d4278941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1878282032
