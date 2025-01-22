@@ -2120,8 +2120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxTime: 30
   timeTxt: {fileID: 779265225}
-  tSlider: {fileID: 0}
-  sliderFill: {fileID: 0}
+  tSlider: {fileID: 1478876452}
+  sliderFill: {fileID: 1914156492}
   failTxt: {fileID: 1854517013}
   clearTxt: {fileID: 1726586731}
   normalSuccessPanel: {fileID: 1560502842}
@@ -3902,7 +3902,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1478876450}
   - component: {fileID: 1478876452}
-  - component: {fileID: 1478876451}
   m_Layer: 5
   m_Name: TSlider
   m_TagString: Untagged
@@ -3932,27 +3931,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0, y: 302}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1478876451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478876449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c5e013c137d084d99db9c151a7f505, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxTime: 30
-  timeTxt: {fileID: 779265225}
-  tSlider: {fileID: 1478876452}
-  sliderFill: {fileID: 0}
-  failTxt: {fileID: 1854517013}
-  clearTxt: {fileID: 1726586731}
-  normalSuccessPanel: {fileID: 1560502842}
-  hardSuccessPanel: {fileID: 1244149631}
-  board: {fileID: 12070269}
 --- !u!114 &1478876452
 MonoBehaviour:
   m_ObjectHideFlags: 0
