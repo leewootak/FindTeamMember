@@ -84,6 +84,11 @@ public class AudioManager : MonoBehaviour
     }
     public void HiddenBGM()
     {
-        bgm.clip = hiddenClip;
+        if (bgm.clip.name != hiddenClip.name)
+        {
+            bgm.clip = hiddenClip;
+            bgm.Play();
+        }
+        
     }
 }
