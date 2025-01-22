@@ -27,7 +27,7 @@ public class PlayUI : MonoBehaviour
             board.SetActive(false);
             AudioManager.Instance.SFXList.Clear();
         }
-        else if (time >= 10f)// test¿ë 10ÃÊ ¿ø·¡ 30ÃÊ
+        else if (time >= 10f)// testï¿½ï¿½ 10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 30ï¿½ï¿½
         {
             timeTxt.text = 30f.ToString("N2");
             Time.timeScale = 0f;
