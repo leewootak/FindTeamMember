@@ -22,8 +22,9 @@ public class GameManager : MonoBehaviour
 
     private bool isFinished;
 
-    private bool normalClear = false;
-    private bool hardClear = false;
+    private bool normalClear = true;
+    private bool hardClear = true;
+    private bool activeHiddenbool = false;
 
     public static GameManager Instance
     {
@@ -58,6 +59,12 @@ public class GameManager : MonoBehaviour
     {
         get => hardClear; set => hardClear = true;
     }
+
+    public bool Hidden
+    {
+        get => activeHiddenbool; set => activeHiddenbool = true;
+    }
+    
 
     public List<Card> CardList => cardList;
 
@@ -96,7 +103,7 @@ public class GameManager : MonoBehaviour
         isFinished = false;
         if(scene.name == "StartScene" && normalClear == true && hardClear == true)
         {
-            Debug.Log("플래그 활성화");
+            activeHidden();
         }
     }
 
@@ -139,5 +146,12 @@ public class GameManager : MonoBehaviour
         {
             card.GetComponentInChildren<Button>().enabled = true;
         }
+    }
+
+    public void activeHidden()
+    {
+        Debug.Log("히든활성화");
+        Hidden = true;
+        AudioManager.Instance.HiddenBGM();
     }
 }

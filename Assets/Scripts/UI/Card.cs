@@ -52,6 +52,12 @@ public class Card : MonoBehaviour
         frontImage.sprite = sprite;
     }
 
+    public void HiddenSetting(int number)
+    {
+        idx = number;
+        //anim.SetInteger("HiddenCard", idx);
+    }
+
     public void OpenCard()
     {
         if (GameManager.Instance.secondCard != null)
@@ -60,9 +66,21 @@ public class Card : MonoBehaviour
         }
 
         audioSource.PlayOneShot(clip);
-        anim.SetBool("isOpen", true);
         front.SetActive(true);
         back.SetActive(false);
+        anim.SetBool("isOpen", true);
+
+        if (GameManager.Instance.CurLevel == 3)
+        {
+            Debug.Log($"{idx}");
+            front.GetComponent<Animator>().SetInteger("HiddenCard", idx);
+            
+            //anim.SetInteger("HiddenCard", idx);
+        }
+        else
+        {
+            //anim.SetBool("isOpen", true);
+        }
 
         if (GameManager.Instance.firstCard == null)
         {
@@ -77,6 +95,10 @@ public class Card : MonoBehaviour
 
     public void DestroyCard()
     {
+        if(GameManager.Instance.CurLevel == 3)
+        {
+            return; // 히든 스테이지에서는 카드 맞춰도 사라지지 않음 
+        }
         Invoke("DestroyCardInvoke", 0.5f);
     }
 
@@ -93,7 +115,8 @@ public class Card : MonoBehaviour
 
     void CloseCardInvoke()
     {
-        anim.SetBool("isOpen", false);
+        front.GetComponent<Animator>().SetInteger("HiddenCard", -1);
+        anim.SetBool("OpenCard", false);
         front.SetActive(false);
         back.SetActive(true);
     }

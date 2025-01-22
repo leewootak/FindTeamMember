@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
     [SerializeField] private GameObject levelSelectMenu;
+    [SerializeField] private GameObject hiddenLevelSelectMenu;
     [SerializeField] private GameObject optionMenu;
 
     private void Start()
@@ -16,7 +17,15 @@ public class StartMenu : MonoBehaviour
 
     public void StartGame()
     {
-        UIManager.Instance.OpenUI(levelSelectMenu);
+        if (GameManager.Instance.Hidden)
+        {
+            UIManager.Instance.OpenUI(hiddenLevelSelectMenu);
+        }
+        else
+        {
+            UIManager.Instance.OpenUI(levelSelectMenu);
+        }
+        
     }
 
     public void DisplayOption()
