@@ -48,7 +48,6 @@ public class Board : MonoBehaviour
             newCard.Setting(arr[i]);
             GameManager.Instance.CardList.Add(newCard);
             newCard.targetPos = new Vector3(x, y, 0f);
-            //cards.Add(go);
         }
 
         GameManager.Instance.cardCount = arr.Length;
