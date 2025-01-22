@@ -18,6 +18,8 @@ public class Card : MonoBehaviour
 
     public SpriteRenderer frontImage;
 
+    public Vector3 targetPos = Vector3.zero;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();

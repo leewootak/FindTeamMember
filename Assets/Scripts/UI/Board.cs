@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class Board : MonoBehaviour
 {
     public GameObject card;
 
+    List<GameObject> cards = new List<GameObject>(); // Ä«µå ¼ÅÇÃ¿ë
+    bool isCardShuffleEnd = false;
+    float shuffleTime = 4.0f;
     int totalCard = 20;
 
     private void Start()
@@ -34,16 +41,44 @@ public class Board : MonoBehaviour
 
         for (int i = 0; i < totalCard; i++)
         {
-            
-            GameObject go = Instantiate(card, gameObject.transform);
-            //Debug.Log(gameObject.transform.localScale); 
+            GameObject go = Instantiate(card, gameObject.transform); 
             float x = (i % 5) * 1.15f - 2.3f;
             float y = (i / 5) * 1.15f - 3.8f;
 
-            go.transform.position = new Vector2(x, y);
+            //go.transform.position = new Vector2(x, y);
+            go.GetComponent<Card>().targetPos = new Vector3(x, y, 0f);
             go.GetComponent<Card>().Setting(arr[i]);
+            cards.Add(go);
         }
 
         GameManager.Instance.cardCount = arr.Length;
+    }
+
+    private void Update()
+    {
+        if(isCardShuffleEnd)
+        {
+            foreach (GameObject go in cards)
+            {
+                go.GetComponent<Card>().anim.SetBool("isMoveEnd", true); // CardIdle·Î ³Ñ°ÜÁÜ
+            }
+            return;
+        }
+        shuffleTime -= Time.deltaTime;
+        if(shuffleTime < 3.0f)
+        {
+            foreach (GameObject go in cards)
+            {
+                Vector3 targetPosition = go.GetComponent<Card>().targetPos;
+                Debug.Log($"idx : {go.GetComponent<Card>().idx}, target : {targetPosition}");
+
+                go.transform.position = Vector3.Lerp(go.transform.position, targetPosition, 0.01f);
+                if (shuffleTime <= 0f)
+                {
+                    go.transform.position = targetPosition;
+                    isCardShuffleEnd = true;
+                }
+            }
+        }
     }
 }
