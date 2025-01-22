@@ -37,7 +37,7 @@ public class Card : MonoBehaviour
 
         float targetX = 0.9f; // 원하는 가로 크기
         float targetY = targetX * originalRatio;
-        
+
         // 세로가 큰 이미지 제한
         if (targetY > 0.9f)
         {
@@ -74,7 +74,7 @@ public class Card : MonoBehaviour
         {
             Debug.Log($"{idx}");
             front.GetComponent<Animator>().SetInteger("HiddenCard", idx);
-            
+
             //anim.SetInteger("HiddenCard", idx);
         }
         else
@@ -95,7 +95,7 @@ public class Card : MonoBehaviour
 
     public void DestroyCard()
     {
-        if(GameManager.Instance.CurLevel == 3)
+        if (GameManager.Instance.CurLevel == 3)
         {
             return; // 히든 스테이지에서는 카드 맞춰도 사라지지 않음 
         }
@@ -116,8 +116,14 @@ public class Card : MonoBehaviour
 
     void CloseCardInvoke()
     {
-        front.GetComponent<Animator>().SetInteger("HiddenCard", -1);
-        anim.SetBool("OpenCard", false);
+        if (GameManager.Instance.CurLevel == 3)
+        {
+            front.GetComponent<Animator>().SetInteger("HiddenCard", -1);
+        }
+        else
+        {
+            anim.SetBool("isOpen", false);
+        }
         front.SetActive(false);
         back.SetActive(true);
     }
