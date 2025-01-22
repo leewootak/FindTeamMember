@@ -1808,6 +1808,7 @@ MonoBehaviour:
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
   cardCount: 0
+  cardList: []
 --- !u!4 &491257481
 Transform:
   m_ObjectHideFlags: 0
@@ -5808,7 +5809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 10e612c5fa5d7fc49beee1b8baab892e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e02f49661e03ec14f94f2fe3d430caa4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

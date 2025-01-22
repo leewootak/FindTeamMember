@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public int cardCount = 0;
 
-    private List<Card> cardList;
+    [SerializeField] private List<Card> cardList;
 
     private bool isFinished;
 
@@ -89,9 +89,13 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.AddSFXInfo(audioSource);
     }
 
+    private void Update()
+    {
+        Debug.Log(cardList.Count);
+    }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UIManager.Instance.UIStack.Clear();
         cardList.Clear();
         isFinished = false;
         if(scene.name == "StartScene" && normalClear == true && hardClear == true)
@@ -125,19 +129,36 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        Time.timeScale = 0f;
         foreach (Card card in cardList)
         {
-            card.GetComponentInChildren<Button>().enabled = false;
+            Button btn = card.GetComponentInChildren<Button>();
+            if (btn != null && btn.interactable == true)
+            {
+                btn.interactable = false;
+            }
         }
+        Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
-        Time.timeScale = 1f;
         foreach (Card card in cardList)
         {
-            card.GetComponentInChildren<Button>().enabled = true;
+            Button btn = card.GetComponentInChildren<Button>();
+            if (btn != null && btn.interactable == false)
+            {
+                btn.interactable = true;
+            }
+
         }
+        Time.timeScale = 1f;
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+        cardList.Clear();
+        UIManager.Instance.UIStack.Clear();
+        AudioManager.Instance.SFXList.Clear();
     }
 }
