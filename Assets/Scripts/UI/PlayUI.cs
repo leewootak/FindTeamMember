@@ -8,6 +8,7 @@ public class PlayUI : MonoBehaviour
     float time = 0f;
     public Text timeTxt;
     public GameObject failTxt, clearTxt, normalSuccessPanel, hardSuccessPanel, board;
+    public GameObject pauseBtn;
     public float maxTime = 30f;
     public Slider tSlider;
     private Image sliderFill;
@@ -35,6 +36,8 @@ public class PlayUI : MonoBehaviour
             normalSuccessPanel.SetActive(true);
             timeTxt.enabled = false;
             board.SetActive(false);
+            tSlider.gameObject.SetActive(false);
+            pauseBtn.gameObject.SetActive(false);
             AudioManager.Instance.SFXList.Clear();
             if (GameManager.Instance.CurLevel == 1)
             {
@@ -53,6 +56,7 @@ public class PlayUI : MonoBehaviour
             timeTxt.enabled = false;
             board.SetActive(false);
             tSlider.gameObject.SetActive(false);
+            pauseBtn.gameObject.SetActive(false);
             AudioManager.Instance.SFXList.Clear();
         }
     }

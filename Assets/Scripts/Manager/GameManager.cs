@@ -89,11 +89,6 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.AddSFXInfo(audioSource);
     }
 
-    private void Update()
-    {
-        Debug.Log(cardList.Count);
-    }
-
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         cardList.Clear();
@@ -149,7 +144,6 @@ public class GameManager : MonoBehaviour
             {
                 btn.interactable = true;
             }
-
         }
         Time.timeScale = 1f;
     }

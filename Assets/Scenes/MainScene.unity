@@ -1850,6 +1850,7 @@ MonoBehaviour:
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
   cardCount: 0
+  cardList: []
 --- !u!4 &605546556
 Transform:
   m_ObjectHideFlags: 0
@@ -2346,6 +2347,7 @@ MonoBehaviour:
   normalSuccessPanel: {fileID: 1560502842}
   hardSuccessPanel: {fileID: 1244149631}
   board: {fileID: 12070269}
+  pauseBtn: {fileID: 834734501}
   maxTime: 30
   tSlider: {fileID: 1382122136}
 --- !u!1 &779265223
