@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource bgm;
     public AudioClip clip;
+    public AudioClip hiddenClip;
 
     private List<AudioSource> sfxList;
 
@@ -80,5 +81,9 @@ public class AudioManager : MonoBehaviour
             sfxList.Add(audio);
             audio.volume = sfxVol * masterVol;
         }
+    }
+    public void HiddenBGM()
+    {
+        bgm.clip = hiddenClip;
     }
 }
