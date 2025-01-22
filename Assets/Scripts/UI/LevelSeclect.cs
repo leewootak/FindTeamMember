@@ -19,6 +19,12 @@ public class LevelSeclect : MonoBehaviour
         GameManager.Instance.LoadScene("MainScene");
     }
 
+    public void HiddenButton()
+    {
+        GameManager.Instance.CurLevel = 3;
+        GameManager.Instance.LoadScene("HiddenScene");
+    }
+
     public void ReturnButton()
     {
         UIManager.Instance.CloseUI();

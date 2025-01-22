@@ -22,8 +22,10 @@ public class GameManager : MonoBehaviour
 
     private bool isFinished;
 
-    private bool normalClear = false;
-    private bool hardClear = false;
+    private bool normalClear = true;
+    private bool hardClear = true;
+
+    private bool hiddenClear = false;
 
     public static GameManager Instance
     {
@@ -59,9 +61,15 @@ public class GameManager : MonoBehaviour
         get => hardClear; set => hardClear = true;
     }
 
+    public bool HiddenClear
+    {
+        get => hiddenClear; set => hiddenClear = true;
+    }
+
     public List<Card> CardList => cardList;
 
     public bool IsFinished => isFinished;
+
 
     private void Awake()
     {
@@ -95,7 +103,7 @@ public class GameManager : MonoBehaviour
         isFinished = false;
         if(scene.name == "StartScene" && normalClear == true && hardClear == true)
         {
-            Debug.Log("플래그 활성화");
+            ActiveHidden();
         }
     }
 
@@ -154,5 +162,12 @@ public class GameManager : MonoBehaviour
         cardList.Clear();
         UIManager.Instance.UIStack.Clear();
         AudioManager.Instance.SFXList.Clear();
+    }
+
+    public void ActiveHidden()
+    {
+        Debug.Log("플래그 활성화");
+        HiddenClear = true;
+        AudioManager.Instance.HiddenBGM();
     }
 }
