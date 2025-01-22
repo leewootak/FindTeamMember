@@ -26,8 +26,8 @@ public class PlayUI : MonoBehaviour
 
         tSlider.value = time;
         float t = Mathf.Clamp01(time / maxTime); // time을 0~1 사이 값으로 변환
-        sliderFill.color = Color.Lerp(Color.white, Color.red, t);
-        timeTxt.color = Color.Lerp(Color.white, Color.red, t);
+        sliderFill.color = Color.Lerp(Color.yellow, Color.red, t);
+        timeTxt.color = Color.Lerp(Color.yellow, Color.red, t);
 
         if (GameManager.Instance.IsFinished)
         {
