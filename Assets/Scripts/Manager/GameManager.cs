@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UIManager.Instance.UIStack.Clear();
+        cardList.Clear();
     }
 
     public void Matched()
