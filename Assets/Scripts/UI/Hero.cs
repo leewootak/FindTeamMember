@@ -5,7 +5,6 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 
 {
-    public bool isHiddenClear;
     public Animator anim;
 
     void Start()
@@ -15,8 +14,9 @@ public class Hero : MonoBehaviour
 
     void Update()
     {
-        if (isHiddenClear == true)
+        if (GameManager.Instance.CurLevel == 3)
         {
+            GameManager.Instance.HiddenClear = true;
             anim.SetBool("isHSuccess", true);
         }
     }

@@ -10,6 +10,7 @@ public class PlayUI : MonoBehaviour
     public GameObject failTxt, clearTxt, normalSuccessPanel, hardSuccessPanel, board;
     public float maxTime = 30f;
     public Slider tSlider;
+
     private Image sliderFill;
 
     private void Start()
@@ -45,7 +46,7 @@ public class PlayUI : MonoBehaviour
                 GameManager.Instance.HardClear = true;
             }
         }
-        else if (time >= 30f)// test용 10초 원래 30초
+        else if (time >= maxTime)// test용 10초 원래 30초
         {
             timeTxt.text = 30f.ToString("N2");
             Time.timeScale = 0f;
