@@ -77,18 +77,38 @@ public class Card : MonoBehaviour
 
     public void DestroyCard()
     {
-        Invoke("DestroyCardInvoke", 0.5f);
+        //Invoke("DestroyCardInvoke", 0.5f);
+        StartCoroutine(DestroyCoroutine());
+    }
+
+    private IEnumerator DestroyCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.CardList.Remove(this);
+        AudioManager.Instance.SFXList.Remove(gameObject.GetComponent<AudioSource>());
+        Destroy(gameObject);
+
     }
 
     void DestroyCardInvoke()
     {
         GameManager.Instance.CardList.Remove(this);
+        AudioManager.Instance.SFXList.Remove(gameObject.GetComponent<AudioSource>());
         Destroy(gameObject);
     }
 
     public void CloseCard()
     {
-        Invoke("CloseCardInvoke", 0.8f);
+        //Invoke("CloseCardInvoke", 0.8f);
+        StartCoroutine(CloseCardCoroutine());
+    }
+
+    private IEnumerator CloseCardCoroutine()
+    {
+        yield return new WaitForSeconds(0.8f);
+        anim.SetBool("isOpen", false);
+        front.SetActive(false);
+        back.SetActive(true);
     }
 
     void CloseCardInvoke()

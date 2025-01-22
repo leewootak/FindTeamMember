@@ -7,6 +7,7 @@ public class BackBtn : MonoBehaviour
 {
     public void Back()
     {
-        SceneManager.LoadScene("StartScene");
+        //SceneManager.LoadScene("StartScene");
+        GameManager.Instance.LoadScene("StartScene");
     }
 }

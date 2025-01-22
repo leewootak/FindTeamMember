@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
 
 public class Board : MonoBehaviour
 {
@@ -30,6 +27,8 @@ public class Board : MonoBehaviour
                 totalCard = 20;
                 break;
         }
+
+        GameManager.Instance.CardList.Clear();
 
         int[] arr = new int[totalCard];
         for(int i = 0; i <  totalCard; i++)
