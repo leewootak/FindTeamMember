@@ -80,6 +80,7 @@ public class Card : MonoBehaviour
 
     void DestroyCardInvoke()
     {
+        GameManager.Instance.CardList.Remove(this);
         Destroy(gameObject);
     }
 

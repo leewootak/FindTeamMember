@@ -41,7 +41,9 @@ public class Board : MonoBehaviour
             float y = (i / 5) * 1.15f - 3.8f;
 
             go.transform.position = new Vector2(x, y);
-            go.GetComponent<Card>().Setting(arr[i]);
+            Card newCard = go.GetComponent<Card>();
+            newCard.Setting(arr[i]);
+            GameManager.Instance.CardList.Add(newCard);
         }
 
         GameManager.Instance.cardCount = arr.Length;

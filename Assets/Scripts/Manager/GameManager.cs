@@ -8,6 +8,20 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
+    private int curLevel = 1;    // 1:Normal, 2:Hard
+
+    AudioSource audioSource;
+    public AudioClip clip;
+
+    public Card firstCard;
+    public Card secondCard;
+
+    public int cardCount = 0;
+
+    private List<Card> cardList;
+
+    private bool isFinished;
+
     public static GameManager Instance
     {
         get
@@ -27,21 +41,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private int curLevel = 1;    // 1:Normal, 2:Hard
-
-    AudioSource audioSource;
-    public AudioClip clip;
-
-    public Card firstCard;
-    public Card secondCard;
-
-    public int cardCount = 0;
-    private bool isFinished;
-
     public int CurLevel
     {
         get => curLevel; set => curLevel = value;
     }
+
+    public List<Card> CardList => cardList;
 
     public bool IsFinished => isFinished;
 
@@ -58,6 +63,8 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        cardList = new List<Card>();
     }
 
     private void Start()
@@ -100,10 +107,18 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
+        foreach (Card card in cardList)
+        {
+            card.GetComponentInChildren<Button>().enabled = false;
+        }
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        foreach (Card card in cardList)
+        {
+            card.GetComponentInChildren<Button>().enabled = true;
+        }
     }
 }
