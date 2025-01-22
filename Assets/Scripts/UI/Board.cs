@@ -11,9 +11,8 @@ public class Board : MonoBehaviour
 {
     public GameObject card;
 
-    List<GameObject> cards = new List<GameObject>(); // Ä«µå ¼ÅÇÃ¿ë
     bool isCardShuffleEnd = false;
-    float shuffleTime = 4.0f;
+    float shuffleTime = 3.8f;
     int totalCard = 20;
 
     private void Start()
@@ -49,7 +48,7 @@ public class Board : MonoBehaviour
             newCard.Setting(arr[i]);
             GameManager.Instance.CardList.Add(newCard);
             newCard.targetPos = new Vector3(x, y, 0f);
-            cards.Add(go);
+            //cards.Add(go);
         }
 
         GameManager.Instance.cardCount = arr.Length;
@@ -59,24 +58,22 @@ public class Board : MonoBehaviour
     {
         if(isCardShuffleEnd)
         {
-            foreach (GameObject go in cards)
+            foreach (Card c in GameManager.Instance.CardList)
             {
-                go.GetComponent<Card>().anim.SetBool("isMoveEnd", true); // CardIdle·Î ³Ñ°ÜÁÜ
+                c.anim.SetBool("isMoveEnd", true); // CardIdle·Î ³Ñ°ÜÁÜ
             }
             return;
         }
         shuffleTime -= Time.deltaTime;
         if(shuffleTime < 3.0f)
         {
-            foreach (GameObject go in cards)
+            foreach (Card c in GameManager.Instance.CardList)
             {
-                Vector3 targetPosition = go.GetComponent<Card>().targetPos;
-                Debug.Log($"idx : {go.GetComponent<Card>().idx}, target : {targetPosition}");
-
-                go.transform.position = Vector3.Lerp(go.transform.position, targetPosition, 0.01f);
+                Vector3 targetPosition = c.targetPos;
+                c.gameObject.transform.position = Vector3.Lerp(c.gameObject.transform.position, targetPosition, 0.01f);
                 if (shuffleTime <= 0f)
                 {
-                    go.transform.position = targetPosition;
+                    c.gameObject.transform.position = targetPosition;
                     isCardShuffleEnd = true;
                 }
             }
