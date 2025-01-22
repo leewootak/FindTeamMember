@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
@@ -64,6 +67,11 @@ public class GameManager : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
         AudioManager.Instance.AddSFXInfo(audioSource);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UIManager.Instance.UIStack.Clear();
     }
 
     public void Matched()

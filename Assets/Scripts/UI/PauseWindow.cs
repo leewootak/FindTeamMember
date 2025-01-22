@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PauseWindow : MonoBehaviour
 {
-    private GameObject optionMenu;
+    [SerializeField] private GameObject optionMenu;
+
+    public void PauseButton()
+    {
+        UIManager.Instance.OpenUI(this.gameObject);
+        GameManager.Instance.PauseGame();
+    }
 
     public void OptionButton()
     {
@@ -14,5 +20,6 @@ public class PauseWindow : MonoBehaviour
     public void ReturnButton()
     {
         UIManager.Instance.CloseUI();
+        GameManager.Instance.ResumeGame();
     }
 }
