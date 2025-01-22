@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
 
     private bool isFinished;
 
+    private bool normalClear = false;
+    private bool hardClear = false;
+
     public static GameManager Instance
     {
         get
@@ -44,6 +47,16 @@ public class GameManager : MonoBehaviour
     public int CurLevel
     {
         get => curLevel; set => curLevel = value;
+    }
+
+    public bool NomarlClear
+    {
+        get => normalClear; set => normalClear = true;
+    }
+
+    public bool HardClear
+    {
+        get => hardClear; set => hardClear = true;
     }
 
     public List<Card> CardList => cardList;
@@ -84,6 +97,11 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         cardList.Clear();
+        isFinished = false;
+        if(scene.name == "StartScene" && normalClear == true && hardClear == true)
+        {
+            Debug.Log("플래그 활성화");
+        }
     }
 
     public void Matched()

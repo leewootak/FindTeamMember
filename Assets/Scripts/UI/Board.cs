@@ -9,19 +9,23 @@ public class Board : MonoBehaviour
     public GameObject card;
 
     bool isCardShuffleEnd = false;
-    float shuffleTime = 3.8f;
+    float shuffleTime = 3f;
     int totalCard = 20;
 
     private void Start()
     {
+        GameManager.Instance.CurLevel = 3;
         // 난이도에 따라 세팅 변경
-        switch(GameManager.Instance.CurLevel)
+        switch (GameManager.Instance.CurLevel)
         {
             case 1:
                 totalCard = 20;
                 break;
             case 2:
                 totalCard = 30;
+                break;
+            case 3:             // 히든씬 
+                totalCard = 16;
                 break;
             default:
                 totalCard = 20;
@@ -40,12 +44,20 @@ public class Board : MonoBehaviour
         for (int i = 0; i < totalCard; i++)
         {
             GameObject go = Instantiate(card, gameObject.transform); 
+            Card newCard = go.GetComponent<Card>();
+            if(GameManager.Instance.CurLevel == 3)
+            {
+                newCard.HiddenSetting(arr[i]);
+            }
+            else
+            {
+                newCard.Setting(arr[i]);
+            }
+
+            GameManager.Instance.CardList.Add(newCard);
+
             float x = (i % 5) * 1.15f - 2.3f;
             float y = (i / 5) * 1.15f - 3.8f;
-
-            Card newCard = go.GetComponent<Card>();
-            newCard.Setting(arr[i]);
-            GameManager.Instance.CardList.Add(newCard);
             newCard.targetPos = new Vector3(x, y, 0f);
         }
 
@@ -63,7 +75,7 @@ public class Board : MonoBehaviour
             return;
         }
         shuffleTime -= Time.deltaTime;
-        if(shuffleTime < 3.0f)
+        if(shuffleTime < 2.0f)
         {
             foreach (Card c in GameManager.Instance.CardList)
             {
