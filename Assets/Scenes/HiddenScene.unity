@@ -5315,8 +5315,10 @@ MonoBehaviour:
   normalSuccessPanel: {fileID: 127606837}
   hardSuccessPanel: {fileID: 1270514901}
   board: {fileID: 630285081}
-  maxTime: 30
+  pauseBtn: {fileID: 1406543523}
+  maxTime: 5
   tSlider: {fileID: 585201250}
+  hero: {fileID: 1709995728}
 --- !u!114 &1295109057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6830,7 +6832,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1709995727}
   - component: {fileID: 1709995726}
-  - component: {fileID: 1709995725}
+  - component: {fileID: 1709995729}
+  - component: {fileID: 1709995728}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -6838,27 +6841,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1709995725
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709995724}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 655dd48167ebc2645b0c36819a9f6b57, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1709995726
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6926,6 +6908,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1709995728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709995724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd1775541c8a3642aed6fe84f221ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1709995729}
+--- !u!95 &1709995729
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709995724}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50724b2e8c8197545a14218258d78d7c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1710116949
 GameObject:
   m_ObjectHideFlags: 0
@@ -8623,6 +8639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 49b5055946865054888d448671b403f5, type: 3}
+  hiddenClip: {fileID: 0}
 --- !u!4 &2143690934
 Transform:
   m_ObjectHideFlags: 0

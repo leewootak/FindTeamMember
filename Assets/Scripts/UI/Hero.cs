@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
-
 {
     public Animator anim;
 
-    void Start()
+    public void PlayDeathAnim()
     {
-        anim = GetComponent<Animator>();
+        anim.SetTrigger("Fail");
     }
 
-    void Update()
+    public void PlaySuccessAnim()
     {
-        if (GameManager.Instance.CurLevel == 3)
-        {
-            GameManager.Instance.HiddenClear = true;
-            anim.SetBool("isHSuccess", true);
-        }
+        anim.SetTrigger("Success");
     }
 }
+
