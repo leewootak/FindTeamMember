@@ -1602,6 +1602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 31e88b43ab1ddd444820eb8780588f54, type: 3}
+  hiddenClip: {fileID: 0}
 --- !u!4 &1148782905
 Transform:
   m_ObjectHideFlags: 0
@@ -1718,7 +1719,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 351361906}
         m_TargetAssemblyTypeName: LevelSeclect, Assembly-CSharp
-        m_MethodName: HiddenBuutn
+        m_MethodName: HiddenButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
