@@ -36,6 +36,14 @@ public class PlayUI : MonoBehaviour
             timeTxt.enabled = false;
             board.SetActive(false);
             AudioManager.Instance.SFXList.Clear();
+            if (GameManager.Instance.CurLevel == 1)
+            {
+                GameManager.Instance.NomarlClear = true;
+            }
+            else if (GameManager.Instance.CurLevel == 2)
+            {
+                GameManager.Instance.HardClear = true;
+            }
         }
         else if (time >= 30f)// test용 10초 원래 30초
         {
