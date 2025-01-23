@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
 
     private bool isFinished;
 
-    private bool normalClear = true;
-    private bool hardClear = true;
+    [SerializeField] private bool normalClear = false;
+    [SerializeField] private bool hardClear = false;
 
     private bool hiddenClear = false;
 

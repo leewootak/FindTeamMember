@@ -11,6 +11,8 @@ public class PlayUI : MonoBehaviour
     public GameObject pauseBtn;
     public float maxTime = 30f;
     public Slider tSlider;
+    public Hero hero;
+
     private Image sliderFill;
 
     private void Start()
@@ -27,37 +29,69 @@ public class PlayUI : MonoBehaviour
 
         tSlider.value = time;
         float t = Mathf.Clamp01(time / maxTime); // time을 0~1 사이 값으로 변환
-        sliderFill.color = Color.Lerp(Color.white, Color.red, t);
-        timeTxt.color = Color.Lerp(Color.white, Color.red, t);
+        sliderFill.color = Color.Lerp(Color.yellow, Color.red, t);
+        timeTxt.color = Color.Lerp(Color.yellow, Color.red, t);
 
-        if (GameManager.Instance.IsFinished)
+        if (GameManager.Instance.CurLevel == 1 || GameManager.Instance.CurLevel == 2)
         {
-            clearTxt.SetActive(true);
-            normalSuccessPanel.SetActive(true);
-            timeTxt.enabled = false;
-            board.SetActive(false);
-            tSlider.gameObject.SetActive(false);
-            pauseBtn.gameObject.SetActive(false);
-            AudioManager.Instance.SFXList.Clear();
-            if (GameManager.Instance.CurLevel == 1)
+            // CurLevel이 1 또는 2일 때 실행
+            if (GameManager.Instance.IsFinished)
             {
-                GameManager.Instance.NomarlClear = true;
+                clearTxt.SetActive(true);
+                normalSuccessPanel.SetActive(true);
+                timeTxt.enabled = false;
+                board.SetActive(false);
+                pauseBtn.SetActive(false);
+                tSlider.gameObject.SetActive(false);
+
+                AudioManager.Instance.SFXList.Clear();
+
+                if (GameManager.Instance.CurLevel == 1)
+                {
+                    GameManager.Instance.NomarlClear = true;
+                }
+                else if (GameManager.Instance.CurLevel == 2)
+                {
+                    GameManager.Instance.HardClear = true;
+                }
             }
-            else if (GameManager.Instance.CurLevel == 2)
+            else if (time >= maxTime)
             {
-                GameManager.Instance.HardClear = true;
+                timeTxt.text = 30f.ToString("N2");
+                Time.timeScale = 0f;
+                failTxt.SetActive(true);
+                timeTxt.enabled = false;
+                board.SetActive(false);
+                tSlider.gameObject.SetActive(false);
+                pauseBtn.SetActive(false);
+                AudioManager.Instance.SFXList.Clear();
             }
         }
-        else if (time >= 30f)// test용 10초 원래 30초
+        else if (GameManager.Instance.CurLevel == 3)
         {
-            timeTxt.text = 30f.ToString("N2");
-            Time.timeScale = 0f;
-            failTxt.SetActive(true);
-            timeTxt.enabled = false;
-            board.SetActive(false);
-            tSlider.gameObject.SetActive(false);
-            pauseBtn.gameObject.SetActive(false);
-            AudioManager.Instance.SFXList.Clear();
+            if (time >= maxTime)
+            {
+                failTxt.SetActive(true);
+                timeTxt.enabled = false;
+                board.SetActive(false);
+                pauseBtn.SetActive(false);
+                tSlider.gameObject.SetActive(false);
+                AudioManager.Instance.SFXList.Clear();
+
+                hero.PlayDeathAnim();
+            }
+            else if (GameManager.Instance.IsFinished)
+            {
+                clearTxt.SetActive(true);
+                timeTxt.enabled = false;
+                board.SetActive(false);
+                pauseBtn.SetActive(false);
+                tSlider.gameObject.SetActive(false);
+                AudioManager.Instance.SFXList.Clear();
+                
+                hero.PlaySuccessAnim();
+            }
         }
     }
+
 }

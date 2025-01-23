@@ -116,14 +116,12 @@ public class Card : MonoBehaviour
 
     void CloseCardInvoke()
     {
+        anim.SetBool("isOpen", false);
         if (GameManager.Instance.CurLevel == 3)
         {
             front.GetComponent<Animator>().SetInteger("HiddenCard", -1);
         }
-        else
-        {
-            anim.SetBool("isOpen", false);
-        }
+
         front.SetActive(false);
         back.SetActive(true);
     }
