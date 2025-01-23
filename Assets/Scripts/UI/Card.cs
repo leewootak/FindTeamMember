@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -19,9 +20,15 @@ public class Card : MonoBehaviour
 
     public Vector3 targetPos;
 
+    private Button btn;
+
+    public Button Btn => btn;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+
+        btn = GetComponentInChildren<Button>();
     }
 
     private void Start()
@@ -113,5 +120,18 @@ public class Card : MonoBehaviour
 
         front.SetActive(false);
         back.SetActive(true);
+        GameManager.Instance.isInteractable = true;
     }
+
+    //public void tmpCloseCard()
+    //{
+    //    anim.SetBool("isOpen", false);
+    //    if (GameManager.Instance.CurLevel == eStageLevel.Hidden)
+    //    {
+    //        front.GetComponent<Animator>().SetInteger("HiddenCard", -1);
+    //    }
+
+    //    front.SetActive(false);
+    //    back.SetActive(true);
+    //}
 }

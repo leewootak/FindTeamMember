@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -47,8 +48,7 @@ public class Board : MonoBehaviour
         {
             GameObject obj = Instantiate(card, gameObject.transform);
             Card newCard = obj.GetComponent<Card>();
-            Button button = obj.GetComponentInChildren<Button>();
-            button.onClick.AddListener(() => OpenCard(newCard));
+            newCard.Btn.onClick.AddListener(() => OpenCard(newCard));
             newCard.Initialize(arr[i], GameManager.Instance.CurLevel);
             newCard.MoveCard(i, GameManager.Instance.CurLevel);
             cardList.Add(newCard);
@@ -83,26 +83,34 @@ public class Board : MonoBehaviour
 
     public void OpenCard(Card openedCard)
     {
-        if (secondCard != null)
+        if (GameManager.Instance.isInteractable != false)
         {
-            return;
-        }
+            if (secondCard != null)
+            {
+                return;
+            }
 
-        openedCard.OpenCard();
+            openedCard.OpenCard();
 
-        if (GameManager.Instance.CurLevel == eStageLevel.Hidden)
-        {
-            openedCard.front.GetComponent<Animator>().SetInteger("HiddenCard", openedCard.idx);
-        }
+            if (GameManager.Instance.CurLevel == eStageLevel.Hidden)
+            {
+                openedCard.front.GetComponent<Animator>().SetInteger("HiddenCard", openedCard.idx);
+            }
 
-        if (firstCard == null)
-        {
-            firstCard = openedCard;
-        }
-        else
-        {
-            secondCard = openedCard;
-            Matched();
+            if (firstCard == null)
+            {
+                firstCard = openedCard;
+            }
+            else
+            {
+                secondCard = openedCard;
+                GameManager.Instance.isInteractable = false;
+                //foreach (var card in cardList)
+                //{
+                //    card.Btn.interactable = false;
+                //}
+                Matched();
+            }
         }
     }
 
@@ -124,9 +132,22 @@ public class Board : MonoBehaviour
         {
             firstCard.CloseCard();
             secondCard.CloseCard();
+
+            //StartCoroutine(CloseCardCoroutine(firstCard));
+            //StartCoroutine(CloseCardCoroutine(secondCard));
         }
 
+        //foreach (var card in cardList)
+        //{
+        //    card.Btn.interactable = true;
+        //}
         firstCard = null;
         secondCard = null;
     }
+
+    //private IEnumerator CloseCardCoroutine(Card card)
+    //{
+    //    yield return new WaitForSeconds(0.8f);
+    //    card.tmpCloseCard();
+    //}
 }

@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     private bool normalClear;
     private bool hardClear;
     private bool hiddenClear;
+
+    public bool isInteractable = true;
     #endregion
 
     #region Prperties
