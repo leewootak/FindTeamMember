@@ -10,14 +10,13 @@ public class StartMenu : MonoBehaviour
     [SerializeField] private GameObject HiddenlevelSelectMenu;
     [SerializeField] private GameObject optionMenu;
     [SerializeField] private GameObject hiddenText;
-    [SerializeField] private GameObject hiddenBG;
+    //[SerializeField] private GameObject hiddenBG;
 
     private void Start()
     {
         if (GameManager.Instance.HiddenClear)
         {
             hiddenText.SetActive(true);
-            hiddenBG.SetActive(true);
         }
         UIManager.Instance.OpenUI(this.gameObject);
     }
