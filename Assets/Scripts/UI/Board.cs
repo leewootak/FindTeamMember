@@ -14,8 +14,8 @@ public class Board : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.CurLevel = 3;
-        // ³­ÀÌµµ¿¡ µû¶ó ¼¼ÆÃ º¯°æ
+        // GameManager.Instance.CurLevel = 3;
+        // ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         switch (GameManager.Instance.CurLevel)
         {
             case 1:
@@ -24,7 +24,7 @@ public class Board : MonoBehaviour
             case 2:
                 totalCard = 30;
                 break;
-            case 3:             // È÷µç¾À 
+            case 3:             // ï¿½ï¿½ï¿½ï¿½ï¿½ 
                 totalCard = 16;
                 break;
             default:
@@ -39,7 +39,7 @@ public class Board : MonoBehaviour
         {
             arr[i] = i / 2;
         }
-        arr = arr.OrderBy(x => Random.Range(0f, totalCard / 2)).ToArray(); // ÀÌ¹ÌÁö ¹øÈ£ ¼¯±â 
+        arr = arr.OrderBy(x => Random.Range(0f, totalCard / 2)).ToArray(); // ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ 
 
         for (int i = 0; i < totalCard; i++)
         {
@@ -78,7 +78,7 @@ public class Board : MonoBehaviour
         {
             foreach (Card c in GameManager.Instance.CardList)
             {
-                c.anim.SetBool("isMoveEnd", true); // CardIdle·Î ³Ñ°ÜÁÜ
+                c.anim.SetBool("isMoveEnd", true); // CardIdleï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½
             }
             return;
         }

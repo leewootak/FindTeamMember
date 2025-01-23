@@ -8,7 +8,7 @@ public class PlayUI : MonoBehaviour
     float time = 0f;
     public Text timeTxt;
     public GameObject failTxt, clearTxt, normalSuccessPanel, hardSuccessPanel, board, pauseBtn;
-    public float maxTime = 5f;
+    public float maxTime = 30f;
     public Slider tSlider;
     public Hero hero;
 
@@ -27,13 +27,14 @@ public class PlayUI : MonoBehaviour
         timeTxt.text = time.ToString("N2");
 
         tSlider.value = time;
-        float t = Mathf.Clamp01(time / maxTime); // timeÀ» 0~1 »çÀÌ °ªÀ¸·Î º¯È¯
+        float t = Mathf.Clamp01(time / maxTime);
         sliderFill.color = Color.Lerp(Color.yellow, Color.red, t);
         timeTxt.color = Color.Lerp(Color.yellow, Color.red, t);
 
+        // Normal, Hard ë‹¨ê³„
         if (GameManager.Instance.CurLevel == 1 || GameManager.Instance.CurLevel == 2)
         {
-            // CurLevelÀÌ 1 ¶Ç´Â 2ÀÏ ¶§ ½ÇÇà
+            // ì„±ê³µ
             if (GameManager.Instance.IsFinished)
             {
                 clearTxt.SetActive(true);
@@ -54,6 +55,8 @@ public class PlayUI : MonoBehaviour
                     GameManager.Instance.HardClear = true;
                 }
             }
+
+            // ì‹¤íŒ¨
             else if (time >= maxTime)
             {
                 timeTxt.text = 30f.ToString("N2");
@@ -66,8 +69,11 @@ public class PlayUI : MonoBehaviour
                 AudioManager.Instance.SFXList.Clear();
             }
         }
+
+        // Hidden ë‹¨ê³„
         else if (GameManager.Instance.CurLevel == 3)
         {
+            // ì‹¤íŒ¨
             if (time >= maxTime)
             {
                 failTxt.SetActive(true);
@@ -79,6 +85,8 @@ public class PlayUI : MonoBehaviour
 
                 hero.PlayDeathAnim();
             }
+
+            // ì„±ê³µ
             else if (GameManager.Instance.IsFinished)
             {
                 clearTxt.SetActive(true);
