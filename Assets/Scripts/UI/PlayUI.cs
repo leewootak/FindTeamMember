@@ -91,8 +91,23 @@ public class PlayUI : MonoBehaviour
         // Hidden 단계
         else if (GameManager.Instance.CurLevel == 3)
         {
+            // 성공
+            if (GameManager.Instance.IsFinished)
+            {
+                clearTxt.SetActive(true);
+                timeTxt.enabled = false;
+                board.SetActive(false);
+                pauseBtn.SetActive(false);
+                tSlider.gameObject.SetActive(false);
+                AudioManager.Instance.SFXList.Clear();
+
+                hero.PlaySuccessAnim();
+
+                Invoke("EndingSceneInvoke", 5.0f);
+            }
+
             // 실패
-            if (time >= maxTime)
+            else if (time >= maxTime)
             {
                 failTxt.SetActive(true);
                 timeTxt.enabled = false;
@@ -102,21 +117,6 @@ public class PlayUI : MonoBehaviour
                 AudioManager.Instance.SFXList.Clear();
 
                 hero.PlayDeathAnim();
-            }
-
-            // 성공
-            else if (GameManager.Instance.IsFinished)
-            {
-                clearTxt.SetActive(true);
-                timeTxt.enabled = false;
-                board.SetActive(false);
-                pauseBtn.SetActive(false);
-                tSlider.gameObject.SetActive(false);
-                AudioManager.Instance.SFXList.Clear();
-                
-                hero.PlaySuccessAnim();
-
-                Invoke("EndingSceneInvoke", 5.0f);
             }
         }
     }

@@ -15,7 +15,6 @@ public class Board : MonoBehaviour
     private void Start()
     {
         // GameManager.Instance.CurLevel = 3;
-        // ���̵��� ���� ���� ����
         switch (GameManager.Instance.CurLevel)
         {
             case 1:

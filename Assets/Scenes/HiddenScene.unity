@@ -5318,7 +5318,7 @@ MonoBehaviour:
   hardSuccessPanel: {fileID: 1270514901}
   board: {fileID: 630285081}
   pauseBtn: {fileID: 1406543523}
-  maxTime: 300
+  maxTime: 30
   tSlider: {fileID: 585201250}
   hero: {fileID: 1709995728}
 --- !u!114 &1295109057
@@ -8642,6 +8642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 49b5055946865054888d448671b403f5, type: 3}
   hiddenClip: {fileID: 0}
+  endingClip: {fileID: 0}
 --- !u!4 &2143690934
 Transform:
   m_ObjectHideFlags: 0
