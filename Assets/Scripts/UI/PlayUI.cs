@@ -31,8 +31,8 @@ public class PlayUI : MonoBehaviour
         sliderFill.color = Color.Lerp(Color.yellow, Color.red, t);
         timeTxt.color = Color.Lerp(Color.yellow, Color.red, t);
 
-        // Normal, Hard 단계
-        if (GameManager.Instance.CurLevel == 1 || GameManager.Instance.CurLevel == 2)
+        // Normal 단계
+        if (GameManager.Instance.CurLevel == 1)
         {
             // 성공
             if (GameManager.Instance.IsFinished)
@@ -43,17 +43,8 @@ public class PlayUI : MonoBehaviour
                 board.SetActive(false);
                 pauseBtn.SetActive(false);
                 tSlider.gameObject.SetActive(false);
-
                 AudioManager.Instance.SFXList.Clear();
-
-                if (GameManager.Instance.CurLevel == 1)
-                {
-                    GameManager.Instance.NomarlClear = true;
-                }
-                else if (GameManager.Instance.CurLevel == 2)
-                {
-                    GameManager.Instance.HardClear = true;
-                }
+                GameManager.Instance.NomarlClear = true;
             }
 
             // 실패
@@ -69,7 +60,34 @@ public class PlayUI : MonoBehaviour
                 AudioManager.Instance.SFXList.Clear();
             }
         }
+        else if(GameManager.Instance.CurLevel ==2)
+        {
+            // 성공
+            if (GameManager.Instance.IsFinished)
+            {
+                clearTxt.SetActive(true);
+                hardSuccessPanel.SetActive(true);
+                timeTxt.enabled = false;
+                board.SetActive(false);
+                pauseBtn.SetActive(false);
+                tSlider.gameObject.SetActive(false);
+                AudioManager.Instance.SFXList.Clear();
+                GameManager.Instance.HardClear = true;
+            }
 
+            // 실패
+            else if (time >= maxTime)
+            {
+                timeTxt.text = 30f.ToString("N2");
+                Time.timeScale = 0f;
+                failTxt.SetActive(true);
+                timeTxt.enabled = false;
+                board.SetActive(false);
+                tSlider.gameObject.SetActive(false);
+                pauseBtn.SetActive(false);
+                AudioManager.Instance.SFXList.Clear();
+            }
+        }
         // Hidden 단계
         else if (GameManager.Instance.CurLevel == 3)
         {
