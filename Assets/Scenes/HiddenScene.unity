@@ -1776,6 +1776,8 @@ MonoBehaviour:
   secondCard: {fileID: 0}
   cardCount: 0
   cardList: []
+  normalClear: 0
+  hardClear: 0
 --- !u!4 &491257481
 Transform:
   m_ObjectHideFlags: 0
@@ -5198,8 +5200,10 @@ MonoBehaviour:
   normalSuccessPanel: {fileID: 127606837}
   hardSuccessPanel: {fileID: 1270514901}
   board: {fileID: 630285081}
-  maxTime: 30
+  pauseBtn: {fileID: 0}
+  maxTime: 5
   tSlider: {fileID: 585201250}
+  hero: {fileID: 0}
 --- !u!114 &1295109057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8400,6 +8404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 49b5055946865054888d448671b403f5, type: 3}
+  hiddenClip: {fileID: 0}
 --- !u!4 &2143690934
 Transform:
   m_ObjectHideFlags: 0
