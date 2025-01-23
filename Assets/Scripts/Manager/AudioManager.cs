@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource bgm;
     public AudioClip clip;
     public AudioClip hiddenClip;
+    public AudioClip endingClip;
 
     private List<AudioSource> sfxList;
 
@@ -90,5 +91,14 @@ public class AudioManager : MonoBehaviour
             bgm.Play();
         }
         
+    }
+
+    public void endingBGM()
+    {
+        if (bgm.clip.name != endingClip.name)
+        {
+            bgm.clip = endingClip;
+            bgm.Play();
+        }
     }
 }

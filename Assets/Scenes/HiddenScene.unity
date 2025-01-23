@@ -5318,7 +5318,7 @@ MonoBehaviour:
   hardSuccessPanel: {fileID: 1270514901}
   board: {fileID: 630285081}
   pauseBtn: {fileID: 1406543523}
-  maxTime: 30
+  maxTime: 300
   tSlider: {fileID: 585201250}
   hero: {fileID: 1709995728}
 --- !u!114 &1295109057

@@ -1769,6 +1769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 31e88b43ab1ddd444820eb8780588f54, type: 3}
   hiddenClip: {fileID: 8300000, guid: 49b5055946865054888d448671b403f5, type: 3}
+  endingClip: {fileID: 8300000, guid: 2a1df7ba93fd9dc4c96c72bae5d32a6f, type: 3}
 --- !u!4 &1148782905
 Transform:
   m_ObjectHideFlags: 0
@@ -2390,6 +2391,8 @@ MonoBehaviour:
   secondCard: {fileID: 0}
   cardCount: 0
   cardList: []
+  normalClear: 0
+  hardClear: 0
 --- !u!4 &1811658056
 Transform:
   m_ObjectHideFlags: 0
