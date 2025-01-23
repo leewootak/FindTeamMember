@@ -5,9 +5,11 @@ using UnityEngine;
 public class EndingCredit : MonoBehaviour
 {
     RectTransform rectTransform;
+    [SerializeField] private GameObject returnBtn;
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        AudioManager.Instance.endingBGM();
     }
 
 
@@ -18,6 +20,7 @@ public class EndingCredit : MonoBehaviour
         if (rectTransform.localPosition.y <= 0)
         {
             rectTransform.localPosition = Vector3.zero;
+            returnBtn.SetActive(true);
         }
     }
 }

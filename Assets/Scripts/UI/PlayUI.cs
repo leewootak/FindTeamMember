@@ -8,7 +8,7 @@ public class PlayUI : MonoBehaviour
     float time = 0f;
     public Text timeTxt;
     public GameObject failTxt, clearTxt, normalSuccessPanel, hardSuccessPanel, board, pauseBtn;
-    public float maxTime = 5f;
+    public float maxTime = 500f;
     public Slider tSlider;
     public Hero hero;
 
@@ -89,8 +89,15 @@ public class PlayUI : MonoBehaviour
                 AudioManager.Instance.SFXList.Clear();
                 
                 hero.PlaySuccessAnim();
+
+                Invoke("EndingSceneInvoke", 5.0f);
             }
         }
+    }
+
+    void EndingSceneInvoke()
+    {
+        GameManager.Instance.LoadScene("EndingScene");
     }
 
 }

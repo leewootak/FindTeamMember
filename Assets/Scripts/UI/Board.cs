@@ -14,7 +14,7 @@ public class Board : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.CurLevel = 3;
+        //GameManager.Instance.CurLevel = 3;
         // 난이도에 따라 세팅 변경
         switch (GameManager.Instance.CurLevel)
         {
