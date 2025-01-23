@@ -4,29 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public enum eStageLevel
+{
+    Easy,
+    Hard,
+    Hidden
+}
+
 public class GameManager : MonoBehaviour
 {
+    #region Variables
     private static GameManager instance;
 
-    private int curLevel = 1;    // 1:Normal, 2:Hard
-
-    AudioSource audioSource;
-    public AudioClip clip;
-
-    public Card firstCard;
-    public Card secondCard;
-
-    public int cardCount = 0;
-
-    [SerializeField] private List<Card> cardList;
+    private eStageLevel curLevel;
 
     private bool isFinished;
+    private bool normalClear;
+    private bool hardClear;
+    private bool hiddenClear;
+    #endregion
 
-    [SerializeField] private bool normalClear = false;
-    [SerializeField] private bool hardClear = false;
-
-    private bool hiddenClear = false;
-
+    #region Prperties
     public static GameManager Instance
     {
         get
@@ -46,7 +44,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int CurLevel
+    public eStageLevel CurLevel
     {
         get => curLevel; set => curLevel = value;
     }
@@ -66,11 +64,13 @@ public class GameManager : MonoBehaviour
         get => hiddenClear; set => hiddenClear = true;
     }
 
-    public List<Card> CardList => cardList;
+    public bool IsFinished
+    {
+        get => isFinished; set => isFinished = value;
+    }
+    #endregion
 
-    public bool IsFinished => isFinished;
-
-
+    #region Unity Event Method
     private void Awake()
     {
         if (instance == null)
@@ -83,89 +83,46 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        curLevel = eStageLevel.Easy;
 
-        cardList = new List<Card>();
+        isFinished = false;
+        normalClear = false;
+        hardClear = false;
+        hiddenClear = false;
     }
 
     private void Start()
     {
         Time.timeScale = 1f;
-        isFinished = false;
-
-        audioSource = GetComponent<AudioSource>();
-        AudioManager.Instance.AddSFXInfo(audioSource);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
+    #endregion
 
-    private void Update()
+    #region Private Method
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log(cardList.Count);
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        cardList.Clear();
         isFinished = false;
         if(scene.name == "StartScene" && normalClear == true && hardClear == true)
         {
             ActiveHidden();
         }
     }
+    #endregion
 
-    public void Matched()
-    {
-        if (firstCard.idx == secondCard.idx)
-        {
-            audioSource.PlayOneShot(clip);
-            firstCard.DestroyCard();
-            secondCard.DestroyCard();
-            cardCount -= 2;
-            if (cardCount == 0)
-            {
-                isFinished = true;
-            }
-        }
-        else
-        {
-            firstCard.CloseCard();
-            secondCard.CloseCard();
-        }
-
-        firstCard = null;
-        secondCard = null;
-    }
-
+    #region Public Method
     public void PauseGame()
     {
-        foreach (Card card in cardList)
-        {
-            Button btn = card.GetComponentInChildren<Button>();
-            if (btn != null && btn.interactable == true)
-            {
-                btn.interactable = false;
-            }
-        }
         Time.timeScale = 0f;
     }
 
     public void ResumeGame()
     {
-        foreach (Card card in cardList)
-        {
-            Button btn = card.GetComponentInChildren<Button>();
-            if (btn != null && btn.interactable == false)
-            {
-                btn.interactable = true;
-            }
-
-        }
         Time.timeScale = 1f;
     }
 
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-        cardList.Clear();
         UIManager.Instance.UIStack.Clear();
         AudioManager.Instance.SFXList.Clear();
     }
@@ -176,4 +133,5 @@ public class GameManager : MonoBehaviour
         HiddenClear = true;
         AudioManager.Instance.HiddenBGM();
     }
+    #endregion
 }

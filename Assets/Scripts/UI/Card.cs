@@ -2,109 +2,98 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Card : MonoBehaviour
 {
-    public int idx = 0;
+    public int idx;
 
     public GameObject front;
-    public GameObject back;
+    [SerializeField] private GameObject back;
 
     public Animator anim;
 
-    AudioSource audioSource;
-    public AudioClip clip;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip clip;
 
     public SpriteRenderer frontImage;
 
-    public Vector3 targetPos = Vector3.zero;
+    public Vector3 targetPos;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         AudioManager.Instance.AddSFXInfo(audioSource);
     }
 
-    public void Setting(int number)
+    public void Initialize(int index, eStageLevel level)
     {
-        idx = number;
-        Sprite sprite = Resources.Load<Sprite>($"Sprites/teammate_{idx}");
+        idx = index;
 
-        float originalX = sprite.bounds.size.x;
-        float originalY = sprite.bounds.size.y;
-        float originalRatio = originalY / originalX; // 사진의 비율
-
-        float targetX = 0.9f; // 원하는 가로 크기
-        float targetY = targetX * originalRatio;
-
-        // 세로가 큰 이미지 제한
-        if (targetY > 0.9f)
+        if (level != eStageLevel.Hidden)
         {
-            targetY = 0.9f;
-            targetX = targetY * (originalX / originalY);
-        }
+            Sprite sprite = Resources.Load<Sprite>($"Sprites/teammate_{idx}");
 
-        // 크기 다른 이미지들 맞추기 위함  
-        float realX = targetX / originalX;
-        float realY = targetY / originalY;
-        front.transform.localScale = new Vector3(realX, realY, 1f);
-        frontImage.sprite = sprite;
+            float originalX = sprite.bounds.size.x;
+            float originalY = sprite.bounds.size.y;
+            float originalRatio = originalY / originalX; // 사진의 비율
+
+            float targetX = 0.9f; // 원하는 가로 크기
+            float targetY = targetX * originalRatio;
+
+            // 세로가 큰 이미지 제한
+            if (targetY > 0.9f)
+            {
+                targetY = 0.9f;
+                targetX = targetY * (originalX / originalY);
+            }
+
+            // 크기 다른 이미지들 맞추기 위함
+            float realX = targetX / originalX;
+            float realY = targetY / originalY;
+            front.transform.localScale = new Vector3(realX, realY, 1f);
+            frontImage.sprite = sprite;
+        }
     }
 
-    public void HiddenSetting(int number)
+    public void MoveCard(int index, eStageLevel level)
     {
-        idx = number;
-        //anim.SetInteger("HiddenCard", idx);
+        switch (level)
+        {
+            case eStageLevel.Easy:
+                targetPos = new Vector3((index % 5) * 1.15f - 2.3f, (index / 5) * 1.15f - 2.8f, 0f);
+                break;
+            case eStageLevel.Hard:
+                targetPos = new Vector3((index % 5) * 1.15f - 2.3f, (index / 5) * 1.15f - 3.8f, 0f);
+                break;
+            case eStageLevel.Hidden:
+                targetPos = new Vector3((index % 4) * 1.15f - 1.62f, (index / 4) * 1.15f - 2.8f, 0f);
+                break;
+        }
     }
 
     public void OpenCard()
     {
-        if (GameManager.Instance.secondCard != null)
-        {
-            return;
-        }
-
         audioSource.PlayOneShot(clip);
         front.SetActive(true);
         back.SetActive(false);
         anim.SetBool("isOpen", true);
-
-        if (GameManager.Instance.CurLevel == 3)
-        {
-            Debug.Log($"{idx}");
-            front.GetComponent<Animator>().SetInteger("HiddenCard", idx);
-
-            //anim.SetInteger("HiddenCard", idx);
-        }
-        else
-        {
-            //anim.SetBool("isOpen", true);
-        }
-
-        if (GameManager.Instance.firstCard == null)
-        {
-            GameManager.Instance.firstCard = this;
-        }
-        else
-        {
-            GameManager.Instance.secondCard = this;
-            GameManager.Instance.Matched();
-        }
     }
 
     public void DestroyCard()
     {
-        if (GameManager.Instance.CurLevel == 3)
+        if (GameManager.Instance.CurLevel == eStageLevel.Hidden)
         {
             return; // 히든 스테이지에서는 카드 맞춰도 사라지지 않음 
         }
         Invoke("DestroyCardInvoke", 0.5f);
     }
 
-    void DestroyCardInvoke()
+    private void DestroyCardInvoke()
     {
-        GameManager.Instance.CardList.Remove(this);
         AudioManager.Instance.SFXList.Remove(gameObject.GetComponent<AudioSource>());
         Destroy(gameObject);
     }
@@ -114,10 +103,10 @@ public class Card : MonoBehaviour
         Invoke("CloseCardInvoke", 0.8f);
     }
 
-    void CloseCardInvoke()
+    private void CloseCardInvoke()
     {
         anim.SetBool("isOpen", false);
-        if (GameManager.Instance.CurLevel == 3)
+        if (GameManager.Instance.CurLevel == eStageLevel.Hidden)
         {
             front.GetComponent<Animator>().SetInteger("HiddenCard", -1);
         }

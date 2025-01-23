@@ -7,21 +7,19 @@ public class LevelSeclect : MonoBehaviour
 {
     public void NormalButton()
     {
-        GameManager.Instance.CurLevel = 1;
-        //SceneManager.LoadScene("MainScene");
+        GameManager.Instance.CurLevel = eStageLevel.Easy;
         GameManager.Instance.LoadScene("MainScene");
     }
 
     public void HardButton()
     {
-        GameManager.Instance.CurLevel = 2;
-        //SceneManager.LoadScene("MainScene");
+        GameManager.Instance.CurLevel = eStageLevel.Hard;
         GameManager.Instance.LoadScene("MainScene");
     }
 
     public void HiddenButton()
     {
-        GameManager.Instance.CurLevel = 3;
+        GameManager.Instance.CurLevel = eStageLevel.Hidden;
         GameManager.Instance.LoadScene("HiddenScene");
     }
 

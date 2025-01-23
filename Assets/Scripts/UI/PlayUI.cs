@@ -32,7 +32,7 @@ public class PlayUI : MonoBehaviour
         timeTxt.color = Color.Lerp(Color.yellow, Color.red, t);
 
         // Normal 단계
-        if (GameManager.Instance.CurLevel == 1)
+        if (GameManager.Instance.CurLevel == eStageLevel.Easy)
         {
             // 성공
             if (GameManager.Instance.IsFinished)
@@ -60,7 +60,7 @@ public class PlayUI : MonoBehaviour
                 AudioManager.Instance.SFXList.Clear();
             }
         }
-        else if(GameManager.Instance.CurLevel ==2)
+        else if(GameManager.Instance.CurLevel == eStageLevel.Hard)
         {
             // 성공
             if (GameManager.Instance.IsFinished)
@@ -89,7 +89,7 @@ public class PlayUI : MonoBehaviour
             }
         }
         // Hidden 단계
-        else if (GameManager.Instance.CurLevel == 3)
+        else if (GameManager.Instance.CurLevel == eStageLevel.Hidden)
         {
             // 실패
             if (time >= maxTime)

@@ -250,7 +250,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4057094943367646040
@@ -376,19 +376,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8755164230865160972}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: -595328370513623757}
-        m_TargetAssemblyTypeName: Card, Assembly-CSharp
-        m_MethodName: OpenCard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5070475292993758806
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +534,7 @@ MonoBehaviour:
   anim: {fileID: 7937117280731578321}
   clip: {fileID: 8300000, guid: 83e1b4464caceaf4da8b38c8c291be06, type: 3}
   frontImage: {fileID: 762834651097605749}
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!95 &7937117280731578321
 Animator:
   serializedVersion: 5
