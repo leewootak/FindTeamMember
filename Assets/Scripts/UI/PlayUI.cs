@@ -97,8 +97,15 @@ public class PlayUI : MonoBehaviour
                 AudioManager.Instance.SFXList.Clear();
                 
                 hero.PlaySuccessAnim();
+
+                Invoke("EndingSceneInvoke", 5.0f);
             }
         }
+    }
+
+    void EndingSceneInvoke()
+    {
+        GameManager.Instance.LoadScene("EndingScene");
     }
 
 }
