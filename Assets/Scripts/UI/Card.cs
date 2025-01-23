@@ -64,6 +64,10 @@ public class Card : MonoBehaviour
         {
             return;
         }
+        if(GameManager.Instance.isAccessible == false)
+        {
+            return;
+        }
 
         audioSource.PlayOneShot(clip);
         front.SetActive(true);
@@ -74,12 +78,6 @@ public class Card : MonoBehaviour
         {
             Debug.Log($"{idx}");
             front.GetComponent<Animator>().SetInteger("HiddenCard", idx);
-
-            //anim.SetInteger("HiddenCard", idx);
-        }
-        else
-        {
-            //anim.SetBool("isOpen", true);
         }
 
         if (GameManager.Instance.firstCard == null)
@@ -89,7 +87,9 @@ public class Card : MonoBehaviour
         else
         {
             GameManager.Instance.secondCard = this;
+            GameManager.Instance.isAccessible = false;
             GameManager.Instance.Matched();
+
         }
     }
 
@@ -97,6 +97,9 @@ public class Card : MonoBehaviour
     {
         if (GameManager.Instance.CurLevel == 3)
         {
+            Debug.Log($"here1, isAccessible : {GameManager.Instance.isAccessible}");
+            GameManager.Instance.isAccessible = true;
+            Debug.Log($"here2, isAccessible : {GameManager.Instance.isAccessible}");
             return; // 히든 스테이지에서는 카드 맞춰도 사라지지 않음 
         }
         Invoke("DestroyCardInvoke", 0.5f);
@@ -106,6 +109,7 @@ public class Card : MonoBehaviour
     {
         GameManager.Instance.CardList.Remove(this);
         AudioManager.Instance.SFXList.Remove(gameObject.GetComponent<AudioSource>());
+        GameManager.Instance.isAccessible = true;
         Destroy(gameObject);
     }
 
@@ -116,6 +120,7 @@ public class Card : MonoBehaviour
 
     void CloseCardInvoke()
     {
+        GameManager.Instance.isAccessible = true;
         anim.SetBool("isOpen", false);
         if (GameManager.Instance.CurLevel == 3)
         {

@@ -8,7 +8,8 @@ public class PlayUI : MonoBehaviour
     float time = 0f;
     public Text timeTxt;
     public GameObject failTxt, clearTxt, normalSuccessPanel, hardSuccessPanel, board, pauseBtn;
-    public float maxTime = 30f;
+    public float normalMaxTime = 60f;
+    public float hardMaxTime = 100f;
     public Slider tSlider;
     public Hero hero;
 
@@ -17,7 +18,14 @@ public class PlayUI : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
-        tSlider.maxValue = maxTime;
+        if (GameManager.Instance.CurLevel == 1 || GameManager.Instance.CurLevel == 3)
+        {
+            tSlider.maxValue = normalMaxTime;
+        }
+        if (GameManager.Instance.CurLevel == 2)
+        {
+            tSlider.maxValue = hardMaxTime;
+        }
         sliderFill = tSlider.fillRect.GetComponent<Image>();
     }
 
@@ -27,7 +35,12 @@ public class PlayUI : MonoBehaviour
         timeTxt.text = time.ToString("N2");
 
         tSlider.value = time;
-        float t = Mathf.Clamp01(time / maxTime);
+        float t = Mathf.Clamp01(time / normalMaxTime);
+        if (GameManager.Instance.CurLevel == 2)
+        {
+            t = Mathf.Clamp01(time / hardMaxTime);
+        }
+
         sliderFill.color = Color.Lerp(Color.yellow, Color.red, t);
         timeTxt.color = Color.Lerp(Color.yellow, Color.red, t);
 
@@ -48,7 +61,7 @@ public class PlayUI : MonoBehaviour
             }
 
             // 실패
-            else if (time >= maxTime)
+            else if (time >= normalMaxTime)
             {
                 timeTxt.text = 30f.ToString("N2");
                 Time.timeScale = 0f;
@@ -76,7 +89,7 @@ public class PlayUI : MonoBehaviour
             }
 
             // 실패
-            else if (time >= maxTime)
+            else if (time >= hardMaxTime)
             {
                 timeTxt.text = 30f.ToString("N2");
                 Time.timeScale = 0f;
@@ -107,7 +120,7 @@ public class PlayUI : MonoBehaviour
             }
 
             // 실패
-            else if (time >= maxTime)
+            else if (time >= normalMaxTime)
             {
                 failTxt.SetActive(true);
                 timeTxt.enabled = false;

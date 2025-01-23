@@ -23,7 +23,7 @@ public class Board : MonoBehaviour
             case 2:
                 totalCard = 30;
                 break;
-            case 3:             // ����� 
+            case 3:             // HiddenScene
                 totalCard = 16;
                 break;
             default:

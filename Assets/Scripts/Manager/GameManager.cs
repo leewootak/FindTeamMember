@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
-    private int curLevel = 1;    // 1:Normal, 2:Hard
+    private int curLevel = 1;    // 1:Normal, 2:Hard, 3:Hidden
 
     AudioSource audioSource;
     public AudioClip clip;
@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool normalClear = false;
     [SerializeField] private bool hardClear = false;
+
+    public bool isAccessible = true;
 
     private bool hiddenClear = false;
 
