@@ -56,15 +56,20 @@ public class Board : MonoBehaviour
 
             float x, y;
             GameManager.Instance.CardList.Add(newCard);
-            if(GameManager.Instance.CurLevel == 3)
+            if (GameManager.Instance.CurLevel == 1)
             {
-                x = (i % 4) * 1.15f - 1.62f;
-                y = (i / 4) * 1.15f - 3.8f;
+                x = (i % 5) * 1.15f - 2.3f;
+                y = (i / 5) * 1.15f - 2.8f;
             }
-            else
+            else if (GameManager.Instance.CurLevel == 2)
             {
                 x = (i % 5) * 1.15f - 2.3f;
                 y = (i / 5) * 1.15f - 3.8f;
+            }
+            else
+            {
+                x = (i % 4) * 1.15f - 1.62f;
+                y = (i / 4) * 1.15f - 2.8f;
             }
             newCard.targetPos = new Vector3(x, y, 0f);
         }
