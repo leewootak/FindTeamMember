@@ -158,7 +158,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
         cardList.Clear();
         UIManager.Instance.UIStack.Clear();
@@ -167,6 +166,8 @@ public class GameManager : MonoBehaviour
 
     public void ActiveHidden()
     {
+        Debug.Log("플래그 활성화");
         HiddenClear = true;
+        AudioManager.Instance.HiddenBGM();
     }
 }
